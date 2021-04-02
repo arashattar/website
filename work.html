@@ -1,1 +1,104 @@
+<bound method Tag.prettify of <!DOCTYPE html>
+<html ng-app="app" ng-click="closePopup()" ng-controller="popupCtrl"><head><meta charset="utf-8"/><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/><title ng-bind='pageTitle || "Design Responsive Websites - Webflow"'>Design Responsive Websites - Webflow</title><meta content="Webflow is the top drag-and-drop website builder for creating professional responsive websites." name="description" ng-attr-content='{{ seoDescription || "Webflow is the top drag-and-drop website builder for creating professional responsive websites." }}'/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="a35nuZ0j-HnoUPo5BGJ-YzwSlRhFI6rZwhnY" name="_csrf"/><meta content="webflow.io" name="hostedSubdomain"/><meta content="https://webflow.com" name="hostUrl"/><meta content="4503599627401679" property="twitter:account_id"><meta content="summary_large_image" name="twitter:card"><meta content="@webflow" name="twitter:site"><meta content="@webflow" name="twitter:creator"><meta content="Build professional websites visually with Webflow" name="twitter:title" ng-attr-content="{{ og.title || 'Build professional websites visually with Webflow' }}"><meta content="Join over 500,000 designers building professional, responsive websites in Webflow. It is free to use and simple to start." name="twitter:description" ng-attr-content="{{ og.description || 'Join over 500,000 designers building professional, responsive websites in Webflow. It is free to use and simple to start.' }}"><meta content="https://daks2k3a4ib2z.cloudfront.net/57740da92de39fb074c85d1f/58c87a25ad2f04b551b924fe_discoverOG.jpg" name="twitter:image:src" ng-attr-content="{{ og.image || 'https://daks2k3a4ib2z.cloudfront.net/57740da92de39fb074c85d1f/58c87a25ad2f04b551b924fe_discoverOG.jpg' }}"><meta content="webflow.com" name="twitter:domain"/><meta content="website" property="og:type"/><meta content="Design Professional Websites Visually" ng-attr-content="{{ og.title || 'Design Professional Websites Visually' }}" property="og:title"/><meta content="See why over 500,000 professional designers, marketers, and businesses have chosen Webflow to create and host their Website." ng-attr-content="{{ og.description || 'See why over 500,000 professional designers, marketers, and businesses have chosen Webflow to create and host their Website.' }}" property="og:description"/><meta content="Webflow" ng-attr-content="{{ og.site_name || 'Webflow' }}" property="og:site_name"/><meta content="https://webflow.com/" ng-attr-content="{{ og.url || 'https://webflow.com/' }}" property="og:url"/><meta content="https://daks2k3a4ib2z.cloudfront.net/57740da92de39fb074c85d1f/58c87a25ad2f04b551b924fe_discoverOG.jpg" ng-attr-content="{{ og.image || 'https://daks2k3a4ib2z.cloudfront.net/57740da92de39fb074c85d1f/58c87a25ad2f04b551b924fe_discoverOG.jpg' }}" property="og:image"/><meta content="183215435168053" property="fb:app_id"/><script type="text/javascript">// Bugsnag is bundled in with the rest of the dashboard,
+// so we can't directly initialize here.
+window.getBugsnag = function getBugsnag() {
+  if (window.bugsnagClient) {
+    return window.bugsnagClient;
+  }
+  try {
+    window.bugsnagClient = window.bugsnag({
+      apiKey: "c56fcdaa924b54713033e5e0fb981788",
+      autoNotify: true,
+      appVersion: "bd3d48b3f76664a21dfef24c3481bbbca32cf13d",
+      releaseStage: "production",
+      beforeSend: function(report) {
+        // When the report request url starts with "file://", it means that someone is
+        // running Webflow via downloaded files. We ignore these errors to reduce
+        // noise in our Bugsnag.
+        if (
+          report &&
+          report.request &&
+          report.request.url &&
+          /^file:\/\//.test(report.request.url)
+        ) {
+          report.ignore();
+          return;
+        }
+      },
+    });
+    return window.bugsnagClient;
+  } catch (e) {
+    console.error(e);
+  }
+}</script><script src="https://js.stripe.com/v3/" type="text/javascript"></script><script src="//use.typekit.net/rau7iug.js" type="text/javascript"></script><script type="text/javascript">try{Typekit.load();}catch(e){}
+</script><script src="https://d3e54v103j8qbb.cloudfront.net/gen/js/webflow-dashboard.min.f83d098536.js" type="text/javascript"></script><link href="https://d3e54v103j8qbb.cloudfront.net/gen/css/dashboard.664ca2cc34.css" rel="stylesheet" type="text/css"/><link href="https://d3e54v103j8qbb.cloudfront.net/static/default_webclip.bf1854db3d.png" ref="apple-touch-icon"/><link href="https://d3e54v103j8qbb.cloudfront.net/static/default_favicon.1d66085a39.png" rel="icon"/><script>//- attributes == {apiKey: "", source: "", hostUrl: "", authenticated: true/false}
+var source = 'dashboard';
+var hostUrl = '';
+var authenticated = Boolean(false);
 
+var forceFalse = false;
+// When ipstack is not loaded window.wf_continentCode is undefined and
+// segment consent manager doesn't require consent. We assume consent for
+// authenticated users
+switch (source) {
+  case 'dashboard':
+    // If in iframe we don't want consent banner to pop up so we don't load ipstack,
+    // but we also use parent window consent manager settings for analytics
+    if (!authenticated && !isInIframe()) {
+      initCallbacks();
+      loadIpStack();
+    }
+    break;
+  case 'designer-preview':
+    // When loading preview.webflow.com/... we don't know if a user is
+    // authenticated or not so we need to call this extra endpoint
+    initCallbacks();
+    isAuthenticated(function(authenticated) {
+      if (!authenticated) {
+        loadIpStack();
+      } else {
+        // Needed to resolve wf_isEU
+        forceFalse = true;
+      }
+    });
+    break;
+  // Default: do nothing
+  // Users in Designer are always authenticated so we don't need to detect
+  // EU continent because we assume consent
+}
+
+function initCallbacks() {
+  window.wf_onDetectContinent = function(data) { window.wf_continentCode = data.continent_code; };
+
+  window.wf_isEU = function() {
+    if (typeof window.wf_continentCode === 'string' || typeof Promise === "undefined") {
+      return window.wf_continentCode === 'EU';
+    }
+    // There could be a race condition and wf_continentCode be undefined
+    return new Promise(function(resolve) {
+      var i = 0;
+      var interval = setInterval(function() {
+        if (typeof window.wf_continentCode === 'string' || i++ >= 50 || forceFalse) {
+          // Resolve it if:
+          // - ipstack has loaded and window.wf_continentCode is defined
+          // - 5 seconds passed and wf_continentCode is still undefined
+          // - forceFalse is true (used in preview sites when user is authenticated)
+          clearInterval(interval);
+          return resolve(window.wf_continentCode === 'EU');
+        }
+      }, 100);
+    });
+  };
+}
+
+function loadIpStack() {
+  var head = document.getElementsByTagName("head")[0];
+  var ipstackScript = document.createElement("script");
+  ipstackScript.src = "https://api.ipstack.com/check?access_key=53038fede8e664ed0b2e5274047e23a8&fields=continent_code&callback=wf_onDetectContinent";
+  head.appendChild(ipstackScript);
+}
+<script>
+		$(document).ready(function() {
+			$(".w-webflow-badge").removeClass("w-webflow-badge").empty();
+		});
+</script>
